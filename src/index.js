@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from "react-router-dom"
 import './index.css';
 
 import reportWebVitals from './reportWebVitals';
-import { LevelUp } from './components/GameRater';
+import { GameRater } from './components/GameRater';
 
 ReactDOM.render(
   <React.StrictMode>
-    <LevelUp />
+        <Router>
+          < GameRater/>
+        </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
