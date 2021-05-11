@@ -32,20 +32,21 @@ export const GameForm = () => {
         setCurrentGame(newGameState)
     }
     
-    const [saveCategory, setSaveCategory]= useState([])
 
     const changeCategory = (event) => {
-        const newCategory = [ ...saveCategory ]
+         const newCategories = { ...currentGame }
         if(event.target.checked) {
-            newCategory.push(
-                {
-                    categories:newCategory[event.target.id]= parseInt(event.target.value)
-                }
+            newCategories.categories.push(
+                parseInt(event.target.value)   
             )
+        }
+        else {
+            const index = newCategories.categories.indexOf(parseInt(event.target.value))
+            newCategories.categories.splice(index, 1)
         }
         
 
-        setSaveCategory(newCategory)
+        setCurrentGame(newCategories)
     }
 
 
