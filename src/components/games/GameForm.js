@@ -81,9 +81,9 @@ export const GameForm = () => {
                         value={currentGame.timeToPlay}
                         onChange={changeGameState}
                     />
-                    <label htmlFor="timeToPlay">Age: </label>
-                    <input type="text" id="timeToPlay" required  className="form-control"
-                        value={currentGame.timeToPlay}
+                    <label htmlFor="age">Age: </label>
+                    <input type="text" id="age" required  className="form-control"
+                        value={currentGame.age}
                         onChange={changeGameState}    
                     />
                     
@@ -101,13 +101,16 @@ export const GameForm = () => {
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()
-                    if(currentGame.categoryId !== "0"){
+                    if(currentGame.categories !== []){
                         const game = {
-                        maker: currentGame.maker,
-                        title: currentGame.title,
-                        numberOfPlayers: parseInt(currentGame.numberOfPlayers),
-                        skillLevel: parseInt(currentGame.skillLevel),
-                        categoryId: parseInt(currentGame.categoryId)
+                            title: currentGame.title,
+                            description: currentGame.description,
+                            releaseYear: parseInt(currentGame.releaseYear),
+                            numberPlayers: parseInt(currentGame.numberPlayers),
+                            timeToPlay: parseInt(currentGame.timeToPlay),
+                            age: parseInt(currentGame.age),
+                            creator: currentGame.creator,
+                            categories:currentGame.categories
                     }
 
                     // Send POST request to your API
