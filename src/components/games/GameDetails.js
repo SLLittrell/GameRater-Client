@@ -14,6 +14,13 @@ export const GameDetails = () => {
             .then((res)=> setGame(res))
     }, [])
 
+
+    const handleDelete = () => {
+        DeleteGame(gameId)
+        history.push({ pathname: "/games" })
+    }
+    
+
     console.log(game)
     return (
         <article className="game">
@@ -23,10 +30,7 @@ export const GameDetails = () => {
             </section>
                     
             <button className="btn btn-2 btn-sep icon-create"
-                onClick={() => {
-                    DeleteGame(gameId)
-                    history.push({ pathname: "/games" })
-                }}>Delete this Game
+                onClick={handleDelete}>Delete this Game
             </button>
         </article>
     )

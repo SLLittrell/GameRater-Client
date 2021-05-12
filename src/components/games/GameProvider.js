@@ -60,8 +60,11 @@ export const GameProvider = (props) => {
     }
 
     const DeleteGame = gameId => {
-        return fetch(`http://localhost:8088/games/${gameId}`, {
-            method: "DELETE"
+        return fetch(`http://localhost:8000/games/${gameId}`, {
+            method: "DELETE",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("lu_token")}`
+            }
         })
             .then(getGames)
     }
