@@ -32,6 +32,9 @@ export const GameDetails = () => {
             <button className="btn btn-2 btn-sep icon-create"
                 onClick={handleDelete}>Delete this Game
             </button>
+            <button className="btn btn-2 btn-sep icon-create"
+                onClick={()=> history.push(`/games/${gameId}/review`)}>Add a review
+            </button>
         </article>
     )
 }
