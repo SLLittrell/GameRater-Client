@@ -13,18 +13,15 @@ export const ReviewList=()=>{
     },[])
     
     const reviewFilter = reviews.filter(review => review.game.id === parseInt(gameId))
-    console.log(reviews)
-    // debugger
+  
     return(
         <>
-            <section>
+            <section className="gameReview">
                 <div>{reviewFilter?.map(gr =><div key={gr.id}>
-                    Title: {gr.title}<br></br>{gr.review}<br></br>
-                    Rating: {gr.rating}</div>)}
+                    Title: {gr.title}<br></br>{gr.review}</div>)}
                 
                 </div>
             </section>
         </>
     )
 }
-// (games => games.id === parseInt(gameId))

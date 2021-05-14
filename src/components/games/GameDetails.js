@@ -3,7 +3,7 @@ import { Link, useHistory, useParams } from "react-router-dom"
 import { GameContext } from "./GameProvider.js"
 
 export const GameDetails = () => {
-    const { getGameById, DeleteGame } = useContext(GameContext)
+    const { getGameById, DeleteGame, addRating } = useContext(GameContext)
     const [game, setGame] = useState({})
 
     const history =useHistory()
@@ -19,15 +19,42 @@ export const GameDetails = () => {
         DeleteGame(gameId)
         history.push({ pathname: "/games" })
     }
+
+    const [rating, setRating] = useState({
+        rating: 0,
+        player: 0,
+        gameId: parseInt(gameId)
+    })
+    
+    const ratingChangeEvent =(event) => {
+        const newRating = {...rating}
+        newRating[event.target.id]= parseInt(event.target.value)
+        setRating(newRating)
+    }
     
 
-    console.log(game)
     return (
         <article className="game">
             <section  className="game">
                 <div className="game__title">{game?.title}</div>
-                    
-            </section>
+                <div>Average Rating: {game.average_rating?.toFixed(2)}</div>
+            </section><br></br>
+            <label htmlFor="rating">Rate this game:</label><br></br>
+            <select  id="rating" onChange={ratingChangeEvent} required >
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+                <option value={6}>6</option>
+                <option value={7}>7</option>
+                <option value={8}>8</option>
+                <option value={9}>9</option>
+                <option value={10}>10</option>
+            </select>
+            <button onClick={()=> {
+                addRating(rating)
+            }}>Save Rating</button><br></br>
                     
             <button className="btn btn-2 btn-sep icon-create"
                 onClick={handleDelete}>Delete this Game
