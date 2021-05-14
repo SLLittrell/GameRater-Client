@@ -3,7 +3,7 @@ import { Link, useHistory, useParams } from "react-router-dom"
 import { GameContext } from "./GameProvider.js"
 
 export const GameDetails = () => {
-    const { getGameById, DeleteGame, addRating } = useContext(GameContext)
+    const { getGameById, DeleteGame, addRating, getPlayers, players } = useContext(GameContext)
     const [game, setGame] = useState({})
 
     const history =useHistory()
@@ -12,6 +12,10 @@ export const GameDetails = () => {
     useEffect(() => {
         getGameById(gameId)
             .then((res)=> setGame(res))
+    }, [])
+
+    useEffect(() => {
+        getPlayers()
     }, [])
 
 
@@ -32,7 +36,7 @@ export const GameDetails = () => {
         setRating(newRating)
     }
     
-
+   
     return (
         <article className="game">
             <section  className="game">
@@ -62,6 +66,7 @@ export const GameDetails = () => {
             <button className="btn btn-2 btn-sep icon-create"
                 onClick={()=> history.push(`/games/${gameId}/review`)}>Add a review
             </button>
+            <button className="edit" onClick={() => history.push(`/games/edit/${gameId}`)}>Edit</button>
         </article>
     )
 }

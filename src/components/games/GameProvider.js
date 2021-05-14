@@ -6,6 +6,7 @@ export const GameProvider = (props) => {
     const [ games, setGames ] = useState([])
     const [ category, setCategory ] = useState([])
     const [reviews, setReviews] = useState([])
+    const [players, setPlayers] = useState([])
 
     const getGames = () => {
         return fetch("http://localhost:8000/games", {
@@ -103,10 +104,19 @@ export const GameProvider = (props) => {
         })
     }
 
+    const getPlayers= () => {
+        return fetch("http://localhost:8000/players", {
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("lu_token")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setPlayers)
+    }
 
     return (
         <GameContext.Provider value={{ games, getGames, createGame, getGameCategories, category, getGameById, 
-        DeleteGame, reviews, getReviews, addReview, addRating }} >
+        DeleteGame, reviews, getReviews, addReview, addRating, getPlayers, players }} >
             { props.children }
         </GameContext.Provider>
     )

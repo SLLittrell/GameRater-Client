@@ -50,7 +50,6 @@ export const GameForm = () => {
     }
 
 
-    console.log(category)
     return (
         <form className="gameForm">
             <h2 className="gameForm__title">Register New Game</h2>
